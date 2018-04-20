@@ -38,10 +38,10 @@ body { margin: 0; }
 
 .columnsContainer, footer, header { position: relative; margin: .5em; }
 
-.leftColumn, .rightColumn, footer, header {  border: 1px solid  #ccc; padding: 1.25em; background-color: #add8e6; height:100%; }
+.leftColumn, .rightColumn, footer, header {  border: 1px solid  #ccc; padding: 1.25em; background-color: #add8e6; height:100vh; }
 
 
-.rightColumn { background-color: #90ee90; height:100%; }
+.rightColumn { background-color: #90ee90; height:100vh; }
 
 .object { background-color: #add8e6; margin: 2em; height: 75px; border: 1px solid #ccc;}
 
@@ -111,7 +111,6 @@ body { margin: 0; }
 
 	  	<div class="leftColumn">
 
-
             <h5>profile picture</h5>
             <h2>username</h2>
             <br><br><br><br>
@@ -131,17 +130,12 @@ body { margin: 0; }
 	  	<div class="rightColumn">
 	  		{% for board in boards %}
             <div class="object">
-
                 <p style="margin-left: 1em;">{{ board.name }} <br>
                     {{ board.description }}</p><br>
             </div>
             {% endfor %}
         </div>
-
         <!-- MAKE IT SO THAT WHEN THE WINDOW IS TOO SMALL ONLY THE RIGHT COLUMN SHOWS NOT THE LEFT COLUMN -->
-
   	</div>
-
-
 </body>
 </html>
