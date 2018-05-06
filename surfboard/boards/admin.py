@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Board
+from .models import Post
+from .models import Topic
 
-# Register your models here.
+
+admin.site.register(Board)
+admin.site.register(Topic)
+admin.site.register(Post)

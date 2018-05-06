@@ -1,0 +1,19 @@
+
+
+{% extends 'base.html' %}
+{% block title %}
+  {{ board.name }}
+{% endblock %}
+
+{% block content %}
+    <h1 style="margin-left: 45%; ">{{ board.name }}</h1>
+            <a href="{% url 'home' %}">Back to Boards</a><br>
+            <a href="{% url 'new_topic' board.pk %}"">New topic</a>
+	  		{% for topic in board.topics.all %}
+            <div class="object">
+                {{ topic.subject }}<br>
+                by {{ topic.starter.username }}<br>
+
+            </div>
+            {% endfor %}
+{% endblock %}

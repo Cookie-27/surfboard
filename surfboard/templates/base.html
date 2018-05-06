@@ -1,0 +1,149 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '../static/css/bootstrap.min.css' %}">
+    {% block stylesheet %}{% endblock %}
+<title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  height: 50px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #add8e6;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+body { margin: 0; }
+
+.columnsContainer, footer, header { position: relative; margin: .5em; }
+
+.leftColumn, .rightColumn, footer, header {  border: 1px solid  #ccc; padding: 1.25em; background-color: #add8e6; height:865px; }
+
+
+.rightColumn { background-color: #90ee90; }
+
+.object { background-color: #add8e6; margin: 2em; height: 55px; border: 1px solid #ccc;}
+
+.nav {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+
+}
+
+.nav > li,
+.nav > li > a {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+.inline-items {
+  margin-top: 0;
+
+}
+
+.inline-items li {
+  margin-left: 0;
+  border-left: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 47.5em ) {
+  .leftColumn { position: absolute; top: 0; left: 0; width: 10em; background-color: #add8e6;}
+
+	.rightColumn { margin-left: 10.5em;  background-color: #90ee90; }
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+
+</style>
+</head>
+<body>
+{% block body %}
+
+<div class="topnav">
+    <input type="text" placeholder="Search..">
+
+    <h2 style="margin-left: 1em; margin-top: 0.25em;"><b>surfboard</b></h2>
+</div>
+
+
+<div class="columnsContainer">
+
+	  	<div class="leftColumn">
+            {% if user.is_authenticated %}
+
+            <h5>profile picture</h5>
+            <h2>{{ user.username }}</h2>
+            <br><br><br><br>
+            <a href="">My Ideas</a>
+            <br><br><br>
+            <a href="">History</a>
+            <br><br><br>
+            <a href="">Settings</a>
+            <br><br><br><br><br><br>
+            <a href="{% url 'logout' %}">Log out</a>
+            {% else %}
+            <form class="form-inline ml-auto">
+          <a href="{% url 'login' %}"  class="btn btn-primary ml-2">Log in</a>
+          <a href="{% url 'signup' %}" class="btn btn-primary ml-2" style="margin-top: 0.5em">Sign up</a>
+        </form>
+            {% endif %}
+        </div>
+
+	  	<div class="rightColumn">
+            {% block content %}
+            <h1 style="margin-left: 45%; ">Boards</h1>
+	  		{% for board in boards %}
+            <div class="object">
+
+                <a href="{% url 'board_topics' board.pk %}">{{ board.name }}<br>{{ board.description }}</a>
+            </div>
+            {% endfor %}
+            <form class="form-inline ml-auto">
+          <a href="#" class="btn btn-outline-secondary">Log in</a>
+          <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
+        </form>
+            {% endblock %}
+        </div>
+
+        <!-- MAKE IT SO THAT WHEN THE WINDOW IS TOO SMALL ONLY THE RIGHT COLUMN SHOWS NOT THE LEFT COLUMN -->
+
+  	</div>
+
+{% endblock body %}
+</body>
+</html>

@@ -1,147 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-  height: 55px;
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
-}
-
-/* Style the search box inside the navigation bar */
-.topnav input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-}
 
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
+{% extends 'base.html' %}
+{% block title %}
+  Surfboard Boards
+{% endblock %}
 
-body { margin: 0; }
-
-.columnsContainer, footer, header { position: relative; margin: .5em; }
-
-.leftColumn, .rightColumn, footer, header {  border: 1px solid  #ccc; padding: 1.25em; background-color: #add8e6; height:100%; }
-
-
-.rightColumn { background-color: #90ee90; height:100%; }
-
-.object { background-color: #add8e6; margin: 2em; height: 75px; border: 1px solid #ccc;}
-
-.nav {
-  list-style: none;
-  margin-left: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-
-}
-
-.nav > li,
-.nav > li > a {
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-}
-
-.inline-items {
-  margin-top: 0;
-
-}
-
-.inline-items li {
-  margin-left: 0;
-  border-left: 1px solid black;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.inline-items li:first-child {
-  margin-left: 0;
-  border: none;
-  padding-left: 0;
-  padding-right: 10px;
-
-}
-
-.inline-items li:last-child {
-  padding-right: 0;
-
-}
-
-/* MEDIA QUERIES */
-@media screen and (min-width: 47.5em ) {
-  .leftColumn { position: absolute; top: 0; left: 0; width: 10em; background-color: #add8e6;}
-
-	.rightColumn { margin-left: 10.5em;  background-color: #90ee90; }
-}
-
-.settings {
-    position: absolute;
-    bottom: 1em;
-    left: 1em;
-}
-
-</style>
-</head>
-<body>
-
-<div class="topnav">
-    <input type="text" placeholder="Search..">
-</div>
-
-
-<div class="columnsContainer">
-
-	  	<div class="leftColumn">
-
-
-            <h5>profile picture</h5>
-            <h2>username</h2>
-            <br><br><br><br>
-            <a href="">My Ideas</a>
-            <br><br><br>
-            <a href="">History</a>
-
-            <div class="settings">
-                <a href="">Settings</a>
-
-            </div>
-
-        </div>
-
-        <!-- MAKE THE COLUMNS AS TALL AS THE WINDOW -->
-
-	  	<div class="rightColumn">
+{% block content %}
+    <h1 style="margin-left: 45%; ">Boards</h1>
 	  		{% for board in boards %}
             <div class="object">
 
-                <p style="margin-left: 1em;">{{ board.name }} <br>
-                    {{ board.description }}</p><br>
+                <a href="{% url 'board_topics' board.pk %}">{{ board.name }}<br>{{ board.description }}</a>
             </div>
             {% endfor %}
-        </div>
-
-        <!-- MAKE IT SO THAT WHEN THE WINDOW IS TOO SMALL ONLY THE RIGHT COLUMN SHOWS NOT THE LEFT COLUMN -->
-
-  	</div>
-
-
-</body>
-</html>
+{% endblock %}
